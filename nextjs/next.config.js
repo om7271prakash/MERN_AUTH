@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-console.log("env >>> ", process.env.NEXTAUTH_SECRET);
+// console.log("env >>> ", process.env.NEXTAUTH_SECRET);
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,

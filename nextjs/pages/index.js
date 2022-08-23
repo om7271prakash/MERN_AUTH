@@ -1,12 +1,24 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import Login from '../components/Login'
-import styles from '../styles/Home.module.css'
+import { useSession } from "next-auth/react"
+import jwt from "jsonwebtoken";
 
-export default function Home() {
+const Home = () => {
+    const { data: session, status } = useSession();
+
+    console.log("session >> ", session);
+    const getToken = async () => {
+        const decodedToken = await jwt.verify(session.token, process.env.NEXTAUTH_SECRET);
+        console.log(decodedToken);
+    }
+
+    if(session){
+        getToken()
+    }
     return (
-        <div className={styles.container}>
+        <div>
             <Login />
         </div>
     )
 }
+
+export default Home;
